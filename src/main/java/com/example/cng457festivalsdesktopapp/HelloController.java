@@ -21,6 +21,11 @@ public class HelloController {
     @FXML
     private RadioButton RadioStatistics;
 
+    /**
+     * Our main menu, moves the necessary screen
+     * @param e
+     * @throws IOException
+     */
     public void OnclickContinue(ActionEvent e) throws IOException {
         if (RadioAddFestivalRun.isSelected()) {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AddFestivalRun-view.fxml"));

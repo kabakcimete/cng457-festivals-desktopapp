@@ -45,6 +45,11 @@ public class AddConcertController {
     @FXML
     private TextField AddConcertDurationTextField;
 
+    /**
+     * This method used for moving back to main menu.
+     * @param e
+     * @throws IOException
+     */
     public void BackAddConcert(ActionEvent e) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -55,6 +60,12 @@ public class AddConcertController {
         s.show();
 
     }
+
+    /**
+     * This method runs when add button is clicked and collect necessary data from text field and add the given concert.
+     * @param e
+     * @throws IOException
+     */
     public void AddButtonAddConcert(ActionEvent e) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/addconcert").openConnection();
         connection.setRequestMethod("POST");
@@ -101,6 +112,11 @@ public class AddConcertController {
 
     }
 
+    /**
+     * This function initialize the festivals combobox and get festival data from database.
+     * @throws IOException
+     * @throws ParseException
+     */
     public void initialize() throws IOException, ParseException {
         String response = "";
         HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:8080/getallfestivals").openConnection();
@@ -142,6 +158,11 @@ public class AddConcertController {
         }
     }
 
+    /**
+     * This method runs when festival combobox is on action and return us the festivalruns of selected festival.
+     * @throws ParseException
+     * @throws IOException
+     */
     public void onAddConcertFestivalsComboBoxChange() throws ParseException, IOException {
         AddConcertFestivalRunsComboBox.getItems().clear(); //for clearing each time the the selected festival is changed
         String festivalid = AddConcertFestivalsComboBox.getValue().toString().split("-")[0];

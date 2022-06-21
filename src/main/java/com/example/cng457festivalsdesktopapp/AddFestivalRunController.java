@@ -36,6 +36,11 @@ public class AddFestivalRunController {
     @FXML
     private TextField FestivalRunDateTextField;
 
+    /**
+     * This method helps us to move back to main menu.
+     * @param e
+     * @throws IOException
+     */
     public void BackAddFestivalRun(ActionEvent e) throws IOException {
 
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -46,6 +51,12 @@ public class AddFestivalRunController {
             s.show();
 
     }
+
+    /**
+     * When Add button is clicked this method collect the data from textfields and add festivals to database
+     * @param e
+     * @throws IOException
+     */
     public void AddButtonAddFestivalRun(ActionEvent e) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/addfestivalrun").openConnection();
         connection.setRequestMethod("POST");
@@ -88,6 +99,11 @@ public class AddFestivalRunController {
 
     }
 
+    /**
+     * This method initialize the festivals combobox.
+     * @throws IOException
+     * @throws ParseException
+     */
     public void initialize() throws IOException, ParseException {
         String response = "";
         HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:8080/getallfestivals").openConnection();
