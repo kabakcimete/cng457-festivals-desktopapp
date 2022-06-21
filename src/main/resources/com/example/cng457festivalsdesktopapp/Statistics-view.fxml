@@ -22,7 +22,7 @@
       <Button mnemonicParsing="false" onAction="#BackStatistics" text="Back" GridPane.rowIndex="2" />
       <CheckBox fx:id="StatisticsPopularFestivalsCB" mnemonicParsing="false" text="Popular Festivals" />
       <CheckBox fx:id="StatisticsLongestConcertsCB" mnemonicParsing="false" text="Longest Concerts" GridPane.columnIndex="1" />
-      <Button mnemonicParsing="false" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#ShowStatistics" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <ListView fx:id="StatisticsPFListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
       <ListView fx:id="StatisticsLCListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>

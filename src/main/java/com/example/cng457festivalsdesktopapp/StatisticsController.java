@@ -5,15 +5,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.Scanner;
 
-public class StatisticsController {
+public class StatisticsController implements Runnable{
     @FXML
     private CheckBox StatisticsPopularFestivalsCB;
 
@@ -33,6 +38,128 @@ public class StatisticsController {
         s.setTitle("Main");
         s.setScene(scene);
         s.show();
+
+    }
+
+    public void ShowStatistics()  throws IOException, ParseException{
+        StatisticsPFListView.getItems().clear();
+        StatisticsLCListView.getItems().clear();
+        if (StatisticsPopularFestivalsCB.isSelected() && StatisticsLongestConcertsCB.isSelected()) { //both checked
+           run();
+        }
+        else if (!StatisticsPopularFestivalsCB.isSelected() && StatisticsLongestConcertsCB.isSelected()) { //longest concerts checked
+        LongestConcertsShow();
+        }
+        else if (StatisticsPopularFestivalsCB.isSelected() && !StatisticsLongestConcertsCB.isSelected()) { //popular festivals checked
+        PopularFestivalsShow();
+        }
+        else { //both not checked
+        sayWarning();
+        }
+    }
+
+    public void sayWarning(){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("Nothing is checked!");
+        a.setContentText("Nothing is checked!");
+        a.show();
+    }
+    public void PopularFestivalsShow() throws IOException, ParseException {
+        String response = "";
+        HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:8080/popularfestivals").openConnection();
+        connection.setRequestMethod("GET");
+        int responsecode = connection.getResponseCode();
+        if(responsecode == 200){
+            Scanner scanner = new Scanner(connection.getInputStream());
+            while(scanner.hasNextLine()){
+                response += scanner.nextLine();
+            }
+            scanner.close();
+        }
+
+        JSONParser parser = new JSONParser();
+        JSONArray array = (JSONArray) parser.parse(response);
+        for(int i=0; i<array.size(); i++){
+            try {
+                JSONObject temp = (JSONObject) array.get(i);
+                StatisticsPFListView.getItems().add(temp.get("festivalid") + "-" +temp.get("festivalname"));
+            }
+            catch(Exception e){
+                String response2 = "";
+                HttpURLConnection connection2 = (HttpURLConnection)new URL("http://localhost:8080/getfestival/" + array.get(i)).openConnection();
+                connection2.setRequestMethod("GET");
+                int responsecode2 = connection2.getResponseCode();
+                if(responsecode2 == 200){
+                    Scanner scanner = new Scanner(connection2.getInputStream());
+                    while(scanner.hasNextLine()){
+                        response2 += scanner.nextLine();
+                    }
+                    scanner.close();
+                }
+                JSONObject object = (JSONObject) parser.parse(response2);
+                StatisticsPFListView.getItems().add(object.get("festivalid") + "-" + object.get("festivalname"));
+
+            }
+
+
+        }
+
+
+    }
+   public void LongestConcertsShow() throws IOException, ParseException {
+       String response = "";
+       HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:8080/longestconcerts").openConnection();
+       connection.setRequestMethod("GET");
+       int responsecode = connection.getResponseCode();
+       if(responsecode == 200){
+           Scanner scanner = new Scanner(connection.getInputStream());
+           while(scanner.hasNextLine()){
+               response += scanner.nextLine();
+           }
+           scanner.close();
+       }
+
+       JSONParser parser = new JSONParser();
+       JSONArray array = (JSONArray) parser.parse(response);
+       for(int i=0; i<array.size(); i++){
+           try {
+               JSONObject temp = (JSONObject) array.get(i);
+               StatisticsLCListView.getItems().add(temp.get("eventid") + "-" +temp.get("name"));
+           }
+           catch(Exception e){
+               String response2 = "";
+               HttpURLConnection connection2 = (HttpURLConnection)new URL("http://localhost:8080/longestconcerts").openConnection();
+               connection2.setRequestMethod("GET");
+               int responsecode2 = connection2.getResponseCode();
+               if(responsecode2 == 200){
+                   Scanner scanner = new Scanner(connection2.getInputStream());
+                   while(scanner.hasNextLine()){
+                       response2 += scanner.nextLine();
+                   }
+                   scanner.close();
+               }
+               JSONObject object = (JSONObject) parser.parse(response2);
+               StatisticsLCListView.getItems().add(object.get("eventid") + "-" + object.get("name"));
+
+           }
+
+
+       }
+
+
+   }
+
+
+    @Override
+    public void run() {
+        try {
+            LongestConcertsShow();
+            PopularFestivalsShow();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 }
