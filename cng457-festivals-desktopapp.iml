@@ -47,7 +47,9 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+
           <root url="jar://$USER_HOME$/Desktop/ODTÜ KKK/CNG 457 - Software Construction/json-simple-1.1.1.jar!/" />
+
         </CLASSES>
         <JAVADOC />
         <SOURCES />

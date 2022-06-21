@@ -9,24 +9,27 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cng457festivalsdesktopapp.StatisticsController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Button mnemonicParsing="false" onAction="#BackStatistics" text="Back" GridPane.rowIndex="2" />
-      <CheckBox fx:id="StatisticsPopularFestivalsCB" mnemonicParsing="false" text="Popular Festivals" />
-      <CheckBox fx:id="StatisticsLongestConcertsCB" mnemonicParsing="false" text="Longest Concerts" GridPane.columnIndex="1" />
-      <Button mnemonicParsing="false" onAction="#ShowStatistics" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <ListView fx:id="StatisticsPFListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-      <ListView fx:id="StatisticsLCListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-   </children>
-   <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-   </padding>
+
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Button mnemonicParsing="false" onAction="#BackStatistics" text="Back" GridPane.rowIndex="2" />
+        <CheckBox fx:id="StatisticsPopularFestivalsCB" mnemonicParsing="false" text="Popular Festivals" />
+        <CheckBox fx:id="StatisticsLongestConcertsCB" mnemonicParsing="false" text="Longest Concerts" GridPane.columnIndex="1" />
+        <Button mnemonicParsing="false" onAction="#ShowStatistics" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <ListView fx:id="StatisticsPFListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+        <ListView fx:id="StatisticsLCListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
 </GridPane>
+
