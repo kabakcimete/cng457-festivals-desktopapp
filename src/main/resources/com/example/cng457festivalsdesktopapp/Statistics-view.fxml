@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cng457festivalsdesktopapp.StatisticsController">
+
+
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,3 +32,4 @@
         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
     </padding>
 </GridPane>
+

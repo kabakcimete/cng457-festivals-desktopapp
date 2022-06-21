@@ -47,15 +47,18 @@ public class StatisticsController implements Runnable{
 
     }
 
+
     /**
      * This method is terminated when show button is clicked and calls the necessary methods accordingly.
      * @throws IOException
      * @throws ParseException
      */
+
     public void ShowStatistics()  throws IOException, ParseException{
         StatisticsPFListView.getItems().clear();
         StatisticsLCListView.getItems().clear();
         if (StatisticsPopularFestivalsCB.isSelected() && StatisticsLongestConcertsCB.isSelected()) { //both checked
+
             run();
         }
         else if (!StatisticsPopularFestivalsCB.isSelected() && StatisticsLongestConcertsCB.isSelected()) { //longest concerts checked
@@ -72,6 +75,7 @@ public class StatisticsController implements Runnable{
     /**
      * Just a pop-up warning in case no option is checked.
      */
+
     public void sayWarning(){
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setTitle("Nothing is checked!");
@@ -84,6 +88,7 @@ public class StatisticsController implements Runnable{
      * @throws IOException
      * @throws ParseException
      */
+
     public void PopularFestivalsShow() throws IOException, ParseException {
         String response = "";
         HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:8080/popularfestivals").openConnection();
@@ -126,6 +131,7 @@ public class StatisticsController implements Runnable{
 
 
     }
+
 
     /**
      * This method gets the longest concerts and write them on the ListView
@@ -178,6 +184,7 @@ public class StatisticsController implements Runnable{
     /**
      * Thread fuction; when both longest concert and populer festivals are selected execute them at the same time.
      */
+
     @Override
     public void run() {
         try {
@@ -190,4 +197,6 @@ public class StatisticsController implements Runnable{
         }
 
     }
+
 }
+
